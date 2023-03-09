@@ -1,0 +1,546 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
+
+ 
+
+ <style>
+   body{
+     
+     background-image:url("/Virtual-Trial-Room-master/static/assets/bgg3.jfif");
+     background-size:cover;
+      background-repeat:no-repeat;
+    
+      }
+      .navbar{
+      margin-bottom: 0%;
+      padding: 12px;
+     }
+   li{font-size:larger;}
+   .site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  padding-top: 10px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+ </style>
+
+   <script>
+     $(document).ready(function() {
+       $('#company').change(function() {
+
+         var company = $('#company').val();
+         console.log(company)
+         // Make Ajax Request and expect JSON-encoded data
+         $.getJSON(
+           'http://127.0.0.1:1212/get_models' + '/' + company,
+           function(data) {
+
+             // Remove old options
+             $('#models').find('option').remove();
+
+             // Add new items
+             $.each(data, function(key, val) {
+               var option_item = '<option value="' + val + '">' + val + '</option>'
+               $('#models').append(option_item);
+             });
+           }
+         );
+       });
+     });
+   </script>
+   <script>
+    var myIndex = 0;
+    carousel();
+    
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("itm");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}    
+      x[myIndex-1].style.display = "block";  
+      setTimeout(carousel, 1000); // Change image every 2 seconds
+    }
+    </script>
+    
+    <title>Smart Trial Room</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+         
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+          <li><a data-toggle="modal" data-target="#" href="index.html" >HOME</a></li>
+          <li><a data-toggle="modal" data-target="#" href="virtual fitting.html" >VIRTUAL FITTING</a></li>
+            <li><a href="shirt.html">LADIES</a></li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="pant.html">GENTS</a></li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+       
+          <div id="myModal" class="modal fade" role="dialog">
+           <div class="modal-dialog  modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title">Predict</h4>
+              </div>
+              <div class="modal-body">
+                <p>Select a shirt</p>
+                <form class="form-inline" action="http://127.0.0.1:5000/predict" method="post">
+                 <select name="shirt" class="form-control" id="company">
+                                      <option value="0" selected="selected">----------Select one shirt----</option>
+                                      <option value="1">black shirt</option>
+                                      <option value="2">blue shirt</option>
+                                      <option value="3">dupli shirt</option>
+                                      <option value="4">black shirt</option>
+
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  				  <p>Select a pant</p>
+
+                                    <select name="pant" class="form-control" id="company">
+                                      <option value="0" selected="selected">----------Select one pant----</option>
+                                      <option value="1">black pant</option>
+                                      <option value="2">white pant</option>
+
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          
+                  
+                  
+				
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                 <button type="submit" class="btn btn-default pull-right">Try</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h1 style="text-align: center; font-family:Castellar;"><b>Feel the total look</b></h1>
+    </div><br>
+
+    <div class="container" style="width:800px;height:800px;">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+          <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+    
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="..\static\assets\gim2.jpeg" alt="Los Angeles" style="width:800px;height:800px;">
+          </div>
+    
+          <div class="item">
+            <img class="itm" src="..\static\assets\bim3.jpeg" alt="Chicago" style="width:800px;height:800px;">
+          </div>
+        
+          <div class="item">
+            <img src="..\static\assets\gim3.jpeg" alt="New york" style="width:800px;height:800px;">
+          </div>
+          <div class="item">
+            <img src="..\static\assets\bim9.jpeg" alt="Chicago" style="width:800px;height:800px;">
+          </div>
+          <div class="item">
+            <img src="..\static\assets\gim7.jpeg" alt="Chicago" style="width:800px;height:800px;">
+          </div>
+          <div class="item">
+            <img src="..\static\assets\gim9.jpeg" alt="Chicago" style="width:800px;height:800px;">
+          </div>
+        </div>
+    
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <br>
+
+   <div class="container" >
+    <div class="container" style="float:left; lightgray;border:3px solid rgba(151, 0, 252, 0.414);width:400px; height:400px; padding:0 25px;  margin:10px 70px;">
+      <section>
+      <h1 style="font-size:40px; text-align: center;"><b>MEN</b></h1>
+      <br>
+      <form>
+        <div>
+        <label for="men" style="font-size:24px;">Height in inch</label>
+        <select name="men" id="men" style="font-size:20px;">
+          <option value="5'1" >5'1</option>
+          <option value="5'2">5'2</option>
+          <option value="5'3">5'3</option>
+          <option value="5'4">5'4</option>
+        </select>
+        <br><br>
+        <label for="men1" style="font-size:24px;">Waist in inch</label>
+        <select name="men1" id="men1" style="font-size:20px;">
+          <option value="31" >31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+        </select>
+        <br><br>
+        </div>
+        <label for="men2" style="font-size:24px;">Chest in inch</label>
+        <select name="men2" id="men2" style="font-size:20px;">
+          <option value="15" >31</option>
+          <option value="15'5">32</option>
+          <option value="16">33</option>
+          <option value="16'5">34</option>
+        </select>
+        <br><br>
+        <label for="men" style="font-size:24px;">Sleeve in inch</label>
+        <select name="men" id="men" style="font-size:20px;">
+          <option value="5'1" >31</option>
+          <option value="5'2">31</option>
+          <option value="5'3">33</option>
+          <option value="5'4">34</option>
+        </select>
+        <br><br>
+       
+        <div class="submit">
+          <a class="btn btn-primary gradient-bg" href="pant.html" style="font-size:20px;">Submit</a>
+       </div>
+      </form>
+      </section>
+    </div>
+
+    <div class="container" style="float:left; lightgray;border:3px solid rgba(151, 0, 252, 0.414);width:400px; height:400px; padding:0 25px;margin:10px 70px;">
+      <section>
+      <h3 style="font-size:40px;text-align:center;"><b>WOMEN</b></h3>
+      <br>
+      <form>
+        <label for="men" style="font-size:24px;">Height in inch</label>
+        <select name="men" id="men" style="font-size:20px;">
+          <option value="5'1" >5'1</option>
+          <option value="5'2">5'2</option>
+          <option value="5'3">5'3</option>
+          <option value="5'4">5'4</option>
+        </select>
+        <br><br>
+        <label for="men1" style="font-size:24px;">Waist in inch</label>
+        <select name="men1" id="men1" style="font-size:20px;">
+          <option value="31" >31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+        </select>
+        <br><br>
+        <label for="men2" style="font-size:24px;">Chest in inch</label>
+        <select name="men2" id="men2" style="font-size:20px;">
+          <option value="15" >31</option>
+          <option value="15'5">32</option>
+          <option value="16">33</option>
+          <option value="16'5">34</option>
+        </select>
+        <br><br>
+        <label for="men" style="font-size:24px;">Hips in inch</label>
+        <select name="men" id="men" style="font-size:20px;">
+          <option value="5'1" >31</option>
+          <option value="5'2">31</option>
+          <option value="5'3">33</option>
+          <option value="5'4">34</option>
+        </select>
+        <br><br>
+       
+        <div class="submit">
+          <a class="btn btn-primary gradient-bg" href="shirt.html" style="font-size:20px;">Submit</a>
+       </div>
+      </form>
+      </section>
+    </div>
+    <div class="container" style="float:left; lightgray;border:3px solid rgba(151, 0, 252, 0.414);width:400px; height:400px; padding:0 25px;margin:10px 70px;">
+      <a href="virtual fitting.html"><center><img src="../static/assets/self.jfif" alt="Avatar" style="width:50%; padding:3px; margin:1px;"  ></center></a>
+      <div class="container" >
+        <label for=”picture” style="font-size:24px;"> upload ur selfie </label>
+        <input type="file" id="pic" name="pic">
+        <br>
+        <div class="submit">
+          
+          <button id="startBtn" onclick="openCam()">Open Webcam</button>
+          <br/><br/>
+          <video id="videoCam"></video>
+       <script lan="javascript">
+         function openCam(){
+            let All_mediaDevices=navigator.mediaDevices
+            if (!All_mediaDevices || !All_mediaDevices.getUserMedia) {
+               console.log("getUserMedia() not supported.");
+               return;''
+            }
+            All_mediaDevices.getUserMedia({
+               audio: true,
+               video: true
+            })
+            .then(function(vidStream) {
+               var video = document.getElementById('videoCam');
+               if ("srcObject" in video) {
+                  video.srcObject = vidStream;
+               } else {
+                  video.src = window.URL.createObjectURL(vidStream);
+               }
+               video.onloadedmetadata = function(e) {
+                  video.play();
+               };
+            })
+            .catch(function(e) {
+               console.log(e.name + ": " + e.message);
+            });
+         }
+       </script>
+        </div>
+      </form>
+      </section>
+    </div>
+ </div>
+    </div>
+<br>
+
+  </div>
+   <br>
+   <br> 
+    <!-- Site footer -->
+   <footer class="site-footer">
+     <div class="container">
+       <div class="row">
+         <div class="col-sm-12 col-md-6">
+           <h6>About</h6>
+           <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+         </div>
+
+         <div class="col-xs-6 col-md-3">
+
+         </div>
+
+         <div class="col-xs-6 col-md-3">
+           <h6>Quick Links</h6>
+           <ul class="footer-links">
+             <li><a href="index.html">HOME</a></li>
+             <li><a href="virtual fitting.html">VIRTUAL FITTING</a></li>
+             <li><a href="shirt.html">LADIES</a></li>
+             <li><a href="pant.html">GENTS</a></li>
+           </ul>
+         </div>
+       </div>
+       <hr>
+     </div>
+     <div class="container">
+       <div class="row">
+         <div class="col-md-8 col-sm-6 col-xs-12">
+           <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+        <a href="#">AUCEW</a>.
+           </p>
+         </div>
+
+         <div class="col-md-4 col-sm-6 col-xs-12">
+           <ul class="social-icons">
+             <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+             <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+             <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+             <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+           </ul>
+         </div>
+       </div>
+     </div>
+</footer>
+  </body>
+</html>
